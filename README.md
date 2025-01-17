@@ -21,21 +21,22 @@ How to Play
 Setup Instructions
 	1.	Clone the repository:
 
-git clone <repo_url>
-cd matchingGame
+```git clone <repo_url> ```
+```cd matchingGame```
+	
 
 
-	2.	Install dependencies:
+2.	Install dependencies:
 
-npm install
-
-
-	3.	Start the development server:
-
-npx expo start
+		npm install
 
 
-	4.	Use the Expo Go app to scan the QR code and run it on your phone.
+3.	Start the development server:
+
+			npx expo start
+
+
+4.	Use the Expo Go app to scan the QR code and run it on your phone.
 
 Development Notes
 	•	Ensure the Expo CLI is installed.
