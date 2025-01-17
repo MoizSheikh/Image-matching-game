@@ -21,7 +21,7 @@ A memory-based game where players match pairs of images. Flip two cards; if they
 ## Setup Instructions
 1. Clone the repository:
     ```bash
-    git clone [<repo_url>](https://github.com/MoizSheikh/Image-matching-game.git)
+    git clone https://github.com/MoizSheikh/Image-matching-game.git
     cd matchingGame
     ```
 
