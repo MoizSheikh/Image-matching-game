@@ -58,7 +58,6 @@ export default function App() {
       const timerId = setInterval(() => {
         timerRef.current += 1;
         if (score === 8) {
-          // clearInterval(timerId);
           setTime(0);
         } else {
           setTime(timerRef.current);
@@ -149,7 +148,10 @@ export default function App() {
           )
         )}
       </View>
-      {/* {score} */}
+      <Text style={styles.text}>
+        Score:
+        {score}
+      </Text>
       <View style={styles.btnCon}>
         {/* {score === 8 ? (
           <Pressable onPress={(e) => handleRestart()} style={styles.button}>
