@@ -1,16 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import {
-  StyleSheet,
-  TouchableOpacity,
-  Pressable,
-  Text,
-  View,
-  Button,
-  TextInput,
-  Keyboard,
-  ScrollView,
-  Image,
-} from "react-native";
+import { StyleSheet, Pressable, Text, View, Image } from "react-native";
 export default function App() {
   const pictures = [
     {
@@ -53,9 +42,6 @@ export default function App() {
       visibility: false,
       url: "https://picsum.photos/id/77/300/300",
     },
-
-  
-  
   ];
   const [randomPics, setRandomPics] = useState([]);
   const [clicked, setClicked] = useState("");
@@ -88,12 +74,12 @@ export default function App() {
     const arr1 = ran(pictures);
     const arr2 = ran(pictures);
     const ran3 = arr1.concat(arr2);
-    setRandomPics(ran3);
+    setRandomPics([...ran3]);
   };
 
   const ran = (pictures) => {
     let shuffled = pictures
-      .map((value) => ({ value, sort: Math.random() }))
+      .map((value) => ({ value, sort: Math.random(), visibility: false }))
       .sort((a, b) => a.sort - b.sort)
       .map(({ value }) => value);
 
@@ -101,7 +87,6 @@ export default function App() {
   };
 
   const hanglePress = (el, index) => {
-    // randomPics[index]===index
     if (el.id === matchClicked) {
       setScore(score + 1);
       randomPics[index].visibility = true;
@@ -129,12 +114,11 @@ export default function App() {
   };
   return (
     <View style={styles.container}>
-      {/* <ScrollView > */}
       <Text>Time : {time}</Text>
       <View style={styles.imgCon}>
         {randomPics.map((item, index) =>
-          index === clicked || item.visibility  || true? (
-            <Pressable onPress={(e) => hanglePress(item, index)} key={index}>
+          index === clicked || item.visibility ? (
+            <Pressable key={index}>
               <Image
                 style={{
                   width: 65,
@@ -146,7 +130,10 @@ export default function App() {
               />
             </Pressable>
           ) : (
-            <Pressable onPress={(e) => hanglePress(item, index)} key={index}>
+            <Pressable
+              onPress={(e) => gameStarted && hanglePress(item, index)}
+              key={index}
+            >
               <Image
                 style={{
                   width: 65,
@@ -164,19 +151,31 @@ export default function App() {
       </View>
       {/* {score} */}
       <View style={styles.btnCon}>
-        {score === 8 ? (
+        {/* {score === 8 ? (
           <Pressable onPress={(e) => handleRestart()} style={styles.button}>
             <Text>Restart</Text>
           </Pressable>
         ) : (
           <Text>Playing</Text>
-        )}
+        )} */}
         {!gameStarted ? (
           <Pressable
             onPress={(e) => setGameStarted(true)}
             style={styles.button}
           >
-            <Text>Start</Text>
+            <Text>Click to Start</Text>
+          </Pressable>
+        ) : null}
+        {gameStarted ? (
+          <Pressable
+            onPress={(e) => {
+              setGameStarted(false);
+              getRandomPics();
+              handleRestart();
+            }}
+            style={styles.button}
+          >
+            <Text>Restart</Text>
           </Pressable>
         ) : null}
       </View>
